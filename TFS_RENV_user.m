@@ -64,7 +64,7 @@ baseline_start = max(1,round((length(set.contra_masker)-length(s)-10)*rand(1)));
 baseline_end = baseline_start + length(s) - 1;
 noise = set.baseline_noise(baseline_start:baseline_end);
 
-chosenNoise = lower(deblank(work.exppar2)); 
+chosenNoise = lower(deblank(work.exppar3)); 
 if chosenNoise == 1
     % 30 dB continuous noise.
     n = n * (10^((30)/20));	% Scale noise (originally at 0 dB SPL) to desired level
@@ -73,8 +73,8 @@ elseif chosenNoise == 2
     n = n * (10^((set.noiseLevel)/20));	% Scale noise (originally at 0 dB SPL) to desired level
 elseif chosenNoise == 3
     % Interrupted noise.
-    % Create 5 Hz square-wave window that alternates between 0 and 1.
-    win = 0.5 + 0.5*square(2*pi*5*[0:2*size(n,1)-1]/def.samplerate);
+    % Create 4 Hz square-wave window that alternates between 0 and 1.
+    win = 0.5 + 0.5*square(2*pi*4*[0:2*size(n,1)-1]/def.samplerate);
     win = win(max(1,round(size(n,1)*rand(1)))+[0:size(n,1)-1]);
     % Level in gaps is always 30 dB.  Determine level at peaks
     % to yield desired overall level
@@ -95,8 +95,19 @@ elseif chosenNoise == 4
     n = n .* (10.^(win/20));
 elseif chosenNoise == 5
     % Interrupted noise.
-    % Create 20 Hz square-wave window that alternates between 0 and 1.
-    win = 0.5 + 0.5*square(2*pi*20*[0:2*size(n,1)-1]/def.samplerate);
+    % Create 32 Hz square-wave window that alternates between 0 and 1.
+    win = 0.5 + 0.5*square(2*pi*32*[0:2*size(n,1)-1]/def.samplerate);
+    win = win(max(1,round(size(n,1)*rand(1)))+[0:size(n,1)-1]);
+    % Level in gaps is always 30 dB.  Determine level at peaks
+    % to yield desired overall level
+    peak_level = 10*log10(2*(10^(set.noiseLevel/10)) - 10^(30/10));
+    win = 30 + (peak_level-30)*win(:);
+    % Convert to linear and scale the noise
+    n = n .* (10.^(win/20));
+elseif chosenNoise == 6
+    % Interrupted noise.
+    % Create 256 Hz square-wave window that alternates between 0 and 1.
+    win = 0.5 + 0.5*square(2*pi*256*[0:2*size(n,1)-1]/def.samplerate);
     win = win(max(1,round(size(n,1)*rand(1)))+[0:size(n,1)-1]);
     % Level in gaps is always 30 dB.  Determine level at peaks
     % to yield desired overall level

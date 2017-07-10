@@ -39,19 +39,22 @@ def=struct(...
 'expvarord',0,				...		% order of presentation 0 = random, others not implemented yet
 'exppar1',[1:param6],			...		% vector containing experimental parameters for which the exp is performed
 'exppar1unit','N/A',			...		% units of experimental parameter
-'exppar2',[(randperm(4)+1)],          ...
+'exppar3',[(randperm(5)+1)],          ...
                             ...     % In this experiment, exppar2 is:
                             ...     % 1 = 30
                             ...     % 2 = SNRc
-                            ...     % 3 = SNRi-SQW5
+                            ...     % 3 = SNRi-SQW4
                             ...     % 4 = SNRi-SQW10
-                            ...     % 5 = SNRi-SQW20
-                            ...     % 6 = randomize SNRc + x
-'exppar2unit','N/A',			...		% units of experimental parameter
-'exppar3', [-12 -18], ...
-'exppar3unit', 'N/A', ...
+                            ...     % 5 = SNRi-SQW32
+                            ...     % 6 = SNRi-SQW256
+                            ...     % else = SNRi+SNRc
+'exppar3unit','N/A',		...		% units of experimental parameter
+'exppar2', [-12 -18],       ...     % In this experiment, exppar3 is:
+                            ...     % 1 = -12
+                            ...     % 2 = -18
+'exppar2unit', 'N/A', ...
 'repeatnum',1,				...		% number of repeatitions of the experiment
-'parrand',[0 0 1],				...		% toggles random presentation of the elements in "exppar" on (1), off(0)
+'parrand',[0 1 1],				...		% toggles random presentation of the elements in "exppar" on (1), off(0)
 'mouse',1,				...		% enables mouse control (1), or disables mouse control (0)  
 'feedback',0,				...		% visual feedback after response: 0 = no feedback, 1 = correct/false/measurement phase
 'samplerate',44100,			...		% sampling rate in Hz
@@ -80,24 +83,18 @@ def.markcorrect = 0;
 
 switch lower(param8)
     case '30c'
-        def.exppar2 = 1;
+        def.exppar3 = 1;
     case 'snrc'
-        def.exppar2 = 2;
-    case 'snri-sqw5'
-        def.exppar2 = 3;
+        def.exppar3 = 2;
+    case 'snri-sqw4'
+        def.exppar3 = 3;
     case 'snri-sqw10'
-        def.exppar2 = 4;
-    case 'snri-sqw20'
-        def.exppar2 = 5;
+        def.exppar3 = 4;
+    case 'snri-sqw32'
+        def.exppar3 = 5;
+    case 'snri-sqw256'
+        def.exppar3 = 6;
 end
-
-
-%switch param9
- %   case -6
-  %      def.exppar3 = 1;
-   % case -12
-    %    def.exppar3 = 2;
-%end
 
 def.consonants = {'B','D','F','G','J','K','L','M','N','P','R','S','SH','T','V','Z'};
 
@@ -116,5 +113,5 @@ if exist(def.control_filename,'file')
 else
     def.new_expt = 1;
 end
-
+% try to
 % eof
