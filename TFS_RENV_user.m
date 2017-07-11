@@ -47,6 +47,8 @@ s = fftfilt(set.lpf,s);
 % Keep track of the stimulus that was presented to the user
 work.test_stimuli{set.stim_indx} = set.stim_list{set.stim_indx};
 
+assignin('base','consonant',work.test_stimuli{set.stim_indx}) %added for visualization
+
 if strcmpi(work.userpar12,'yes')
     s = [zeros(round(def.samplerate/2),1); s; zeros(round(def.samplerate/2),1)];
 end
@@ -138,6 +140,8 @@ switch lower(deblank(work.userpar3(1:3)))
         [s] = LD_EnergyEqualize_NB(s,24000,eeq_bands,Tfast,Tslow,true,gain_bounds_dB);
 end
 s = resample(s,def.samplerate,24000);
+
+assignin('base', 'signal', s) %added for visualization
 
 % Convert to stereo signal using left/right presentation flags
 s = s(:) * [set.left set.right];

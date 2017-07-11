@@ -49,7 +49,7 @@ def=struct(...
                             ...     % 6 = SNRi-SQW256
                             ...     % else = SNRi+SNRc
 'exppar3unit','N/A',		...		% units of experimental parameter
-'exppar2', [-12 -18],       ...     % In this experiment, exppar3 is:
+'exppar2', [-8 -18],       ...     % In this experiment, exppar3 is:
                             ...     % 1 = -12
                             ...     % 2 = -18
 'exppar2unit', 'N/A', ...
@@ -95,6 +95,8 @@ switch lower(param8)
     case 'snri-sqw256'
         def.exppar3 = 6;
 end
+
+assignin('base','noise',param8)  %added for visualization
 
 def.consonants = {'B','D','F','G','J','K','L','M','N','P','R','S','SH','T','V','Z'};
 
