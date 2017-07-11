@@ -11,7 +11,7 @@ else
     fid = fopen([def.result_path,work.filename,'.dat'],'w');
 	
 	fprintf(fid,'Processing: %s\nNoise: %s\nEar: %s\nMode: %s\n',work.userpar3, work.userpar8, work.userpar4, work.userpar5);
-	fprintf(fid,'Source Level: %f\nSNR: %f\n',work.userpar7, work.userpar9);
+	fprintf(fid,'Source Level: %f\n',work.userpar7);
 	fprintf(fid,'Loss: %s\nNAL: %i\nSim: %s\n',work.userpar10, work.userpar11, work.userpar12);
 	fprintf(fid,'\n\n');
 end
@@ -77,7 +77,7 @@ else
     fid = fopen([def.result_path,work.filename,'_extra.dat'],'w');
     	
 	fprintf(fid,'Processing: %s\nNoise: %s\nEar: %s\nMode: %s\n',work.userpar3, work.userpar8, work.userpar4, work.userpar5);
-	fprintf(fid,'Source Level: %f\nSNR: %f\n',work.userpar7, work.userpar9);
+	fprintf(fid,'Source Level: %f\n',work.userpar7);
 	fprintf(fid,'Loss: %s\nNAL: %i\nSim: %s\n',work.userpar10, work.userpar11, work.userpar12);
 	fprintf(fid,'\n\n');
 end
