@@ -186,6 +186,13 @@ for k=1:length(d)
 end
 p = randperm(length(set.stim_list));
 set.stim_list = set.stim_list(p);
+% Prints the correct answers in order to a textfile "curranswers.txt"
+fileID = fopen('curranswers.txt', 'w');
+for i=1:length(set.stim_list)
+    fprintf(fileID, '%s\n', set.stim_list{i});
+end
+fprintf(fileID, '\nEND OF RUN\N\N');
+fclose(fileID);
 set.stim_consonant = set.stim_consonant(p);
 set.stim_indx = 1;
 
