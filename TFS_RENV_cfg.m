@@ -39,7 +39,7 @@ def=struct(...
 'expvarord',0,				...		% order of presentation 0 = random, others not implemented yet
 'exppar1',[1:param6],			...		% vector containing experimental parameters for which the exp is performed
 'exppar1unit','N/A',			...		% units of experimental parameter
-'exppar3',[(randperm(5)+1)],          ...
+'exppar3',[1 (randperm(5)+1)],          ...
                             ...     % In this experiment, exppar2 is:
                             ...     % 1 = 30
                             ...     % 2 = SNRc
@@ -49,7 +49,7 @@ def=struct(...
                             ...     % 6 = SNRi-SQW256
                             ...     % else = SNRi+SNRc
 'exppar3unit','N/A',		...		% units of experimental parameter
-'exppar2', [-8 -18],       ...     % In this experiment, exppar3 is:
+'exppar2', [-8 -16],       ...     % In this experiment, exppar3 is:
                             ...     % 1 = -12
                             ...     % 2 = -18
 'exppar2unit', 'N/A', ...

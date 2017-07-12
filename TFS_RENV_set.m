@@ -224,7 +224,7 @@ clear n_base
 
 % noise type and level
 set.noiseType = work.userpar8;
-set.noiseLevel = set.desiredLevel - work.userpar9;
+set.noiseLevel = set.desiredLevel - work.exppar2;
 
 % Make contra masker from SSN
 [noise, Fs] = audioread('Sentences\SSN_male.wav');
